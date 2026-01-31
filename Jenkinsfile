@@ -2,22 +2,27 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Download Code') {
+        stage('Checkout') {
             steps {
-                echo "Code downloaded"
+                checkout scm
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                bat "docker build -t myimage ."
+                echo 'Build stage'
             }
         }
 
-        stage('Run Website') {
+        stage('Test') {
             steps {
-                bat "docker run -d -p 8081:80 myimage"
+                echo 'Test stage'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy stage'
             }
         }
     }
